@@ -32,7 +32,6 @@ jobs:
         with:
           repository: Oneflow-Inc/dd1f
           path: dd1f_src
-          ref: 1f-impl
       # 1.1 Login to ACR
       - name: Login to ACR with the AccessKey pair
         uses: aliyun/acr-login@v1
