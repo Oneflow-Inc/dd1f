@@ -1,6 +1,10 @@
 # We don't need prep phase because it is cached by docker hub
 FROM nvcr.io/nvidia/pytorch:21.08-py3
 
+# Set up code directory
+RUN mkdir code
+WORKDIR /workspace/code
+
 # Copy over models used
 RUN wget --no-directories --progress=bar:force:noscroll -P /home/disco/.cache/clip/ https://openaipublic.azureedge.net/clip/models/afeb0e10f9e5a86da6080e35cf09123aca3b358a0c3e3b6c78a7b63bc04b6762/RN50.pt
 RUN wget --no-directories --progress=bar:force:noscroll -P /home/disco/.cache/clip https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt
@@ -16,15 +20,6 @@ RUN apt update
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install -y tzdata imagemagick \
     libgl1 \
     libglib2.0-0
-
-
-# Create a disco user
-RUN useradd -ms /bin/bash disco
-USER disco
-
-# Set up code directory
-RUN mkdir code
-WORKDIR /workspace/code
 
 # Clone Git repositories
 RUN git clone https://github.com/alembics/disco-diffusion.git && \
