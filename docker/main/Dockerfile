@@ -1,7 +1,6 @@
 # Model prep phase, also cuts down on build context wait time since these models files
 # are large and prone to take long to copy...
-ARG BASE_IMAGE=disco-diffusion-prep:5.1
-FROM ${BASE_IMAGE} AS modelprep
+FROM disco-diffusion-prep:5.1 AS modelprep
 
 FROM nvcr.io/nvidia/pytorch:21.08-py3
 
