@@ -5,4 +5,4 @@ docker run --rm -it \
     --gpus=all \
     --name="dd-${USER}" --ipc=host \
     --user $(id -u):$(id -g) \
-oneflowinc/dd1f:latest python disco-diffusion/disco.py
+oneflowinc/dd1f:latest
